@@ -6,7 +6,11 @@ function useLocalStorage(key, initialValue) {
     if (savedValue) {
       return JSON.parse(savedValue);
     }
-    return initialValue;
+    try {
+      return savedValue !== null ? JSON.parse(savedValue) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
   });
 
   useEffect(() => {

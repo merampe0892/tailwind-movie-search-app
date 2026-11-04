@@ -1,10 +1,10 @@
 import { useState, useEffect, useLayoutEffect } from "react";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 import MovieCard from "./components/MovieCard";
 import useDebounce from "./hooks/useDebounce";
 import useLocalStorage from "./hooks/useLocalStorage";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 const API_KEY = "fad55766";
 
@@ -15,16 +15,16 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useLocalStorage("favorites", []);
-  const [theme, setTheme] = useLocalStorage("theme", "dark");
   const [tab, setTab] = useState("all");
-
-  function toggleTheme() {
-    setTheme(theme === "dark" ? "light" : "dark");
-  }
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
 
   useLayoutEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
+
+  function toggleTheme() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
 
   useEffect(() => {
     let ignore = false;
@@ -77,7 +77,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen w-full font-sans text-neutral-100 dark:bg-linear-to-br dark:from-brand-950 dark:via-neutral-900 dark:to-black">
+    <div className="flex flex-col min-h-screen w-full font-sans text-neutral-900 dark:text-neutral-100 bg-neutral-50 dark:bg-linear-to-br dark:from-brand-950 dark:via-neutral-900 dark:to-black">
       <Navbar
         tab={tab}
         setTab={setTab}
@@ -85,7 +85,7 @@ function App() {
         onToggleTheme={toggleTheme}
       />
       <main className="flex-1">
-        <div className="max-w-[1180px] mx-auto pt-12 pb-20">
+        <div className="max-w-[1180px] mx-auto px-6 pt-12 pb-20">
           <SearchBar
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -102,12 +102,12 @@ function App() {
               ))}
             </div>
           ) : loading ? (
-            <p className="text-center text-white/75 text-lg mt-8">Loading...</p>
+            <p className="text-center text-neutral-600 dark:text-white/75 text-lg mt-8">Loading...</p>
           ) : error ? (
-            <p className="text-center text-white/75 text-lg mt-8">{error}</p>
+            <p className="text-center text-neutral-600 dark:text-white/75 text-lg mt-8">{error}</p>
           ) : query.trim() === "" ? (
-            <p className="text-center text-white/75 text-lg mt-8">
-              Start typing above to discover movies and shows.{" "}
+            <p className="text-center text-neutral-600 dark:text-white/75 text-lg mt-8">
+              Start typing above to discover movies and shows.
             </p>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
