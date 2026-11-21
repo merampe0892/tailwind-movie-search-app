@@ -8,13 +8,22 @@ function Footer() {
           Movie<span className="text-brand-500">Find</span>
         </span>
         <div className="flex items-center gap-6">
-          <a href="#" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+          <a
+            href="#"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
             About
           </a>
-          <a href="#" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+          <a
+            href="#"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
             GitHub
           </a>
-          <a href="#" className="hover:text-neutral-900 dark:hover:text-white transition-colors">
+          <a
+            href="#"
+            className="hover:text-neutral-900 dark:hover:text-white transition-colors"
+          >
             Contact
           </a>
         </div>
